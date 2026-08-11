@@ -388,7 +388,7 @@ function renderContact() {
             <span class="contact-icon">📞</span>
             <div>
               <strong>الهاتف</strong>
-              <p>+961 70 123 456</p>
+              <p>+96178947818</p>
             </div>
           </div>
           
@@ -453,7 +453,7 @@ function handleContactSubmit(e) {
 ${message}
   `;
 
-  const phoneNumber = '96170123456';
+  const phoneNumber = '96178947818';
   const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
   window.open(url, '_blank');
 
