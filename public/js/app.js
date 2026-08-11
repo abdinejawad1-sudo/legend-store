@@ -453,7 +453,7 @@ function handleContactSubmit(e) {
 ${message}
   `;
 
-  const phoneNumber = '96170123456';
+  const phoneNumber = '96178947818';
   const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
   window.open(url, '_blank');
 
