@@ -212,27 +212,47 @@ function renderOffers() {
 function renderCategoryView(catId) {
   const category = state.categories.find(c => c.id === catId);
   if (!category) return renderHome();
-  const relatedTypes = state.types.filter(t => t.categoryId === catId);
+
+  const relatedTypes = state.types.filter(
+    t => t.categoryId === catId
+  );
 
   app.innerHTML = `
     <section class="section">
+
       <nav class="breadcrumb">
-        <a href="#/">الرئيسية</a><span class="sep">/</span><span class="current">${category.name}</span>
+        <a href="#/">الرئيسية</a>
+        <span class="sep">/</span>
+        <span class="current">${category.name}</span>
       </nav>
+
       <span class="eyebrow">${category.name}</span>
+
       <h2 class="section-title">اختر النوع</h2>
+
       <div class="stitch"></div>
+
       <div class="grid cols-3">
+
         ${relatedTypes.map(t => `
           <a href="#/type/${t.id}" class="tile">
-            <img src="${t.image}" alt="${t.name}" loading="lazy">
+
+            <img
+              src="/${t.image}"
+              alt="${t.name}"
+              loading="lazy"
+            >
+
             <div class="tile-label">
               <span class="name">${t.name}</span>
               <span class="cta">عرض المنتجات ←</span>
             </div>
+
           </a>
-        `).join('') || emptyState('لا توجد أنواع بعد في هذا القسم')}
+        `).join('')}
+
       </div>
+
     </section>
   `;
 }
