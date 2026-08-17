@@ -675,17 +675,8 @@ textarea {
 .modal-scrim {
   position: fixed;
   inset: 0;
-  z-index: 500;
-  background: rgba(0, 0, 0, .72);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .35s var(--ease);
+  z-index: 1000;
 }
-
 .modal-scrim.show {
   opacity: 1;
   pointer-events: auto;
@@ -1460,4 +1451,97 @@ textarea:focus-visible {
 .offers-card:hover .offers-btn {
   background: var(--gold);
   color: var(--black);
+}
+/* ===== إصلاح نافذة إتمام الطلب على الهاتف ===== */
+@media (max-width: 768px) {
+
+  #checkoutModalScrim {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 20000 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: rgba(0, 0, 0, .65) !important;
+    padding: 16px !important;
+
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  #checkoutModalScrim.show {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  #checkoutModalScrim .checkout-modal {
+    position: relative !important;
+    z-index: 20001 !important;
+    width: 100% !important;
+    max-width: 460px !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+  }
+}
+/* =========================================================
+   MOBILE CHECKOUT — يظهر فوق السلة بالكامل
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  #checkoutModalScrim {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: rgba(0, 0, 0, 0.78) !important;
+    backdrop-filter: blur(5px);
+
+    z-index: 99999 !important;
+  }
+
+  #checkoutModalScrim .checkout-modal {
+    position: relative !important;
+
+    width: calc(100% - 28px) !important;
+    max-width: 460px !important;
+
+    max-height: calc(100dvh - 28px) !important;
+    overflow-y: auto !important;
+
+    margin: 14px !important;
+
+    background: #151412 !important;
+    border: 1px solid rgba(201, 162, 39, .45) !important;
+    border-radius: 10px !important;
+
+    z-index: 100000 !important;
+
+    transform: translateY(20px) scale(.98);
+  }
+
+  #checkoutModalScrim.show .checkout-modal {
+    transform: translateY(0) scale(1);
+  }
+
+  /* السلة تبقى خلف النافذة */
+  #cartDrawer {
+    z-index: 600 !important;
+  }
+
+  #cartScrim {
+    z-index: 550 !important;
+  }
+
+  /* منع تمرير الصفحة خلف النموذج */
+  body:has(#checkoutModalScrim.show) {
+    overflow: hidden !important;
+  }
 }
